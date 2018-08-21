@@ -1,0 +1,54 @@
+{
+  "name": "intranet",
+  "author": "Anthony Matsas",
+  "version": "0.3.1",
+  "private": true,
+  "dependencies": {
+    "dexie": "^2.0.0-rc.1",
+    "highlight.js": "^9.15.6",
+    "react": "^16.4.2",
+    "react-alert": "^2.4.0",
+    "react-dom": "^16.4.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "^2.1.8"
+  },
+  "main": "src/main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "react-scripts start",
+    "start2": "BROWSER=none react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "APP_MODE=dev electron .",
+    "electronWIN": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "devDependencies": {
+    "electron": "^4.1.4",
+    "electron-context-menu": "^0.12.1",
+    "electron-window-state": "^5.0.3"
+  },
+  "build": {
+    "appId": "com.intranet",
+    "compression": "normal",
+    "productName": "intranet",
+    "extends": null,
+    "directories": {
+      "output": "dist",
+      "buildResources": "public"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "public/favicon.png"
+    }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

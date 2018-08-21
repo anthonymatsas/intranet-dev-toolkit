@@ -1,0 +1,23 @@
+.search-input {
+	font-size: 12px;
+	padding: 8px;
+	outline: none;
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-left: 15px;
+	border: 1px solid #dddddd;
+}
+
+.search-button {
+	margin-top: 0;
+	padding: 10px;
+	border: none;
+	background: #000;
+	color: #FFF;
+	cursor: pointer;
+	outline: none;
+}
+
+.search-button.hover {
+	color: #FFF;
+}

@@ -1,0 +1,21 @@
+.complete {
+	margin-left: 5px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.complete-task {
+	color: #76d8a4!important;
+}
+
+.billable {
+	cursor: pointer;
+}
+
+.billable-task {
+	color: #76d8a4!important;
+}
+
+.not-billable-task {
+	color: #d87676!important;
+}

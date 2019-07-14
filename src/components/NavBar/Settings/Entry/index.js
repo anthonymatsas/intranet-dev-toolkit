@@ -371,6 +371,9 @@ class Entry extends Component {
 				<div className='modal-content shadow'>
 					<h5>System Settings</h5>
 					<hr className='n-fade' />
+
+					<p className='x-small center'><i>⌘/Ctrl + H - opens help window</i></p>
+
 					<div className='button top-right modal-content-close' onClick={ onClose }>
 						<span><i className='fa fa-times'></i></span>
 					</div>

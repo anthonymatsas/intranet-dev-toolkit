@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+ <title>Documentation</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="../css/style.css">
+
+ <body>
+  <div class="container">
+   <div class="doc-menu">
+    <a href="#shortcuts">#Shortcuts</a>
+    <a href="#navbar">#Top Navigation</a>
+    <a href="#sidebar">#Side Navigation</a>
+    <a href="#modules">#Modules</a>
+    <a href="#settings">#Settings</a>
+   </div>
+  </div>
+
+  <div class="container">
+   <div id="shortcuts">
+    <h6><b>Shortcuts</b></h6>
+    <table class="table-all small">
+     <thead>
+      <th>Action</th>
+      <th>Keys</th>
+     </thead>
+
+     <tbody>
+      <tr>
+       <td>Opens development tools</td>
+       <td>⌘/Ctrl + I</td>
+      </tr>
+      <tr>
+       <td>Opens help window</td>
+       <td>⌘/Ctrl + H</td>
+      </tr>
+      <tr>
+       <td>Opens entry/maintenance dialogs</td>
+       <td>n/N</td>
+      </tr>
+      <tr>
+       <td>Closes entry/maintenance dialogs</td>
+       <td>Esc</td>
+      </tr>
+      <tr>
+       <td>Go to next module</td>
+       <td>Ctrl + Tab</td>
+      </tr>
+      <tr>
+       <td>Go to previous module</td>
+       <td>Ctrl + Shift + Tab</td>
+      </tr>
+     </tbody>
+    <table>
+
+    <p class="small">*Shortcuts are case <i>insensitive</i></p>
+   </div>
+
+   <hr class="n-fade">
+
+   <div id="navbar">
+    <h6><b>Top Navigation</b></h6>
+    <p class="small">
+     <b>Left side</b> - tabs for each <a href="#modules">module</a>. Navigate between modules by click on each tab or using the keyboard <a href="#shortcuts">shortcuts</a>.</br>
+     <b>Right side</b> - 'plug' icon executes the 'quick connect' feature. The 'gear' icon opens the <a href="#settings">settings</a> modal.
+    </p>
+   </div>
+
+   <hr class="n-fade">
+
+   <div id="sidebar">
+    <h6><b>Side Navigation</b></h6>
+    <p class="small">
+    Holds external links, which are customizable by clicking the 'pencil' icon found at the bottom of the side navigation. An 'Email' link will always show as the first option within the first section. Currently only Gmail is supported. The side navigation is limited to four sections with 8 links each.
+    </p>
+   </div>
+
+   <hr class="n-fade">
+
+   <div id="modules">
+    <h6><b>Modules</b></h6>
+    <p class="small">
+    <b>Current modules</b> - Customers, Time, Snippets</br>
+    <b>Adding new record</b> - new records can be entered by clicking the '+' button found on the bottom right corner of each module or using the available keyboard <a href="#shortcuts">shortcuts</a>.</br>
+    <b>Editing record</b> - records can be maintained by click the 'pencile' icon found next to each record.
+    </p>
+   </div>
+
+   <hr class="n-fade">
+
+   <div id="settings">
+    <h6><b>Settings</b></h6>
+    <table class="table-all small">
+     <thead>
+      <th>Section</th>
+      <th>Description</th>
+     </thead>
+
+     <tbody>
+      <tr>
+       <td>Connection</td>
+       <td>
+        <b>File Path</b> - path in OS that the connection files reside. (.tnt files)</br>
+        <b>Quick Connection</b> - connection file to be used for the 'quick connect' feature. Gets opened using 'connect' icon within the navigation bar.
+       </td>
+      </tr>
+      <tr>
+       <td>Data</td>
+       <td>
+        <b>Download Data</b> - exports specified table's data into .json files to download.</br>
+        <b>Upload Data</b> - upload data in format of json into specified table.</br>
+        <b>Clear Data</b> - clears specified table's data
+       </td>
+      </tr>
+      <tr>
+       <td>Modules</td>
+       <td>
+        <b>Customers</b> - enable/disable the customers module. Data will not be wiped if disabled.</br>
+        <b>Time</b> - enable/disable the time module. Data will not be wiped if disabled.</br>
+        <b>Snippets</b> - enable/disable the snippets module. Data will not be wiped if disabled.
+       </td>
+      </tr>
+     </tbody>
+    <table>
+   </div>
+
+   <hr class="n-fade">
+   <p id="version" class="x-small center"></p>
+  </div>
+
+	<script>
+		window.onload = function() {
+			const config = require('../../../package.json');
+			document.querySelector('#version').innerHTML = 'App v' + config.version;
+		}
+	</script>
+ </body>
+</html>

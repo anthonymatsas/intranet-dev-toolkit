@@ -58,7 +58,7 @@ app.on('ready', () => {
 			icon: __dirname + '/../public/favicon.png',
 		});
 
-		customerHelpWindow.loadURL(path.join('file://', __dirname, './static/html/help.html'))
+		customerHelpWindow.loadURL(path.join('file://', __dirname, './static/docs/help.html'))
 
 		customerHelpWindow.on('closed', function() {
 			customerHelpWindow = null

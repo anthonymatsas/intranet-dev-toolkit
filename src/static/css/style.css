@@ -674,6 +674,11 @@ select {
 	background-color: #7a2122!important;
 }
 
+.doc-menu a {
+	text-decoration: none;
+	padding: 25px;
+}
+
 /* Mobile Rules */
 @media (
 	min-width:601px

@@ -1,11 +1,10 @@
 {
   "name": "intranet",
   "author": "Anthony Matsas",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "dependencies": {
     "dexie": "^2.0.0-rc.1",
-    "highlight.js": "^9.15.6",
     "react": "^16.4.2",
     "react-alert": "^2.4.0",
     "react-dom": "^16.4.2",

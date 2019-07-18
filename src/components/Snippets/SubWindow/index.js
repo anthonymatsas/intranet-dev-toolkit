@@ -3,19 +3,6 @@ import ReactDom from 'react-dom';
 
 import Content from '../Row/Content';
 
-import highlight from 'highlight.js';
-import 'highlight.js/styles/xcode.css';
-
-highlight.configure({
-	languages: [
-		'sql',
-		'php',
-		'html',
-		'javascript',
-		'css',
-	],
-});
-
 class SubWindow extends Component {
 	constructor(props) {
 		super(props);
@@ -25,21 +12,12 @@ class SubWindow extends Component {
 	}
 
 	componentDidMount() {
-		highlight.initHighlighting.called = false
 		this.externalWindow = window.open('');
-
 		this.externalWindow.document.body.appendChild(this.containerElement);
-
-		highlight.initHighlightingOnLoad();
 	}
 
 	componentWillUnmount() {
 		this.externalWindow.close();
-	}
-
-	componentDidUpdate () {
-		highlight.initHighlighting.called = false
-		highlight.initHighlightingOnLoad();
 	}
 
 	render() {

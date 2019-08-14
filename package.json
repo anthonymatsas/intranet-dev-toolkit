@@ -1,7 +1,7 @@
 {
   "name": "intranet",
   "author": "Anthony Matsas",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": true,
   "dependencies": {
     "dexie": "^2.0.0-rc.1",

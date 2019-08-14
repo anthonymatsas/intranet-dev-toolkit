@@ -57,12 +57,16 @@ class QuickConnect extends Component {
 		} = this.state;
 
 		return (
-			<div
-				className='button bar-item'
-				style={ quickStyle }
-				onClick={ (event) => {this.onClick(event, connection) }}
-			>
-				<i className='fa fa-plug'></i>
+			<div>
+				{ connection &&
+					<div
+						className='button bar-item'
+						style={ quickStyle }
+						onClick={ (event) => {this.onClick(event, connection) }}
+					>
+						<i className='fa fa-plug'></i>
+					</div>
+				}
 			</div>
 		);
 	}

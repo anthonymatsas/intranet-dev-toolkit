@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Input from '../../../Input';
-import Button from '../../../Button';
-
 import Modal from './Modal';
+import Connection from './Connection';
+import Data from './Data';
+import Module from './Modules';
 
 import Status from 'react-alert';
 import db from '../../../../helpers/db';
@@ -15,12 +15,7 @@ import {
 } from './constants.js';
 
 import './style.css';
-
 import { statusOptions } from '../../../../constants/statusOptions';
-
-const buttonStyle = {
-	width: '30%',
-};
 
 const remote = window.require('electron').remote;
 
@@ -123,7 +118,7 @@ class Entry extends Component {
 			return this.showStatusMessage('No table selected', 'error');
 		}
 
-		const file = this.uploadInput.files[0];
+		const file = document.querySelector('#fileInput').files[0]
 
 		var fileReader = new FileReader();
 		fileReader.onload = (e) => {
@@ -378,146 +373,46 @@ class Entry extends Component {
 						<span><i className='fa fa-times'></i></span>
 					</div>
 
+					{ showInfoModal &&
+						<Modal message={ 'Application will refresh in 5 seconds for changes to take effect...' } />
+					}
+
 					<div className='container'>
-			<div className="container">
-				{ showInfoModal && 
-					<Modal message={ 'Application will refresh in 5 seconds for changes to take effect...' } />
-				}
-
-				<div className="row">
-					<div className="third">
-						<h5>Connection</h5>
-						<form onSubmit={ (e) => this.saveConnectFilePath(e) }>
-							<div className='settings'>
-								<label className='setting-label'>File Path:</label><br/>
-								<Input
-									classList='setting-input setting-path-input'
-									onChange={ (e) => this.onConnectFilePathChange(e) }
-									inputValue={ connectFilePath }
-									focus={ true }
+						<div className="container">
+							<div className="row">
+								<Connection
+									saveConnectFilePath={ this.saveConnectFilePath }
+									onConnectFilePathChange={ this.onConnectFilePathChange }
+									saveQuickConnect={ this.saveQuickConnect }
+									onQuickConnectChange={ this.onQuickConnectChange }
+									connectFilePath={ connectFilePath }
+									currentQuickConnection={ currentQuickConnection }
 								/>
-								<Button style={ buttonStyle } text='Save'  onClick={ (e) => this.saveConnectFilePath(e) }/>
-							</div>
-						</form>
 
-						<form onSubmit={ (e) => this.saveQuickConnect(e) }>
-							<div className='settings'>
-								<label className='setting-label'>Quick Connection:</label><br/>
-								<Input
-									classList='setting-input'
-									onChange={ (e) => this.onQuickConnectChange(e) }
-									inputValue={ currentQuickConnection }
+								<Data
+									onDownloadSelectChange={ this.onDownloadSelectChange }
+									onDownloadClick={ this.onDownloadClick }
+									onUploadClick={ this.onUploadClick }
+									onUploadSelectChange={ this.onUploadSelectChange }
+									onClearSelectChange={ this.onClearSelectChange }
+									onClearClick={ this.onClearClick }
+									downloadDataOption={ downloadDataOption }
+									uploadDataOption={uploadDataOption }
+									clearDataOption={ clearDataOption }
 								/>
-								<Button style={ buttonStyle } text='Save'  onClick={ (e) => this.saveQuickConnect(e) }/>
+
+								<Module
+									isCustomersOn={ this.state.isCustomersOn }
+									isTimeOn={ this.state.isTimeOn }
+									isSnippetsOn={ this.state.isSnippetsOn }
+									onModuleChange={ this.onModuleChange }
+									saveActiveModules={ this.saveActiveModules }
+								/>
 							</div>
-						</form>
-					</div>
 
-					<div className="third">
-						<h5>Data</h5>
-						<div className='settings'>
-							<label className='setting-label'>Download Data:</label><br/>
-							<select value={ downloadDataOption } onChange={ (e) => this.onDownloadSelectChange(e) }>
-								<option value=''></option>
-								<option value='customers'>Customers</option>
-								<option value='dashboard'>Dashboard</option>
-								<option value='settings'>Settings</option>
-								<option value='snippets'>Snippets</option>
-								<option value='time'>Time</option>
-							</select><br/>
-							<div id="downloadStatus" className="small no-show"></div>
-							<div id="downloadLink" className="small no-show"></div>
-							<Button style={ buttonStyle } text='Download'  onClick={ (e) => this.onDownloadClick(e) }/>
-						</div>
-
-						<form onSubmit={(event) => this.onUploadClick(event) }>
-							<div className='settings'>
-								<label className='setting-label'>Upload Data:&nbsp;</label>
-								<input type='file' accept='.json' ref={(ref) => { this.uploadInput = ref; }} /><br/>
-								<select value={ uploadDataOption } onChange={ (e) => this.onUploadSelectChange(e) }>
-									<option value=''></option>
-									<option value='customers'>Customers</option>
-									<option value='dashboard'>Dashboard</option>
-									<option value='settings'>Settings</option>
-									<option value='snippets'>Snippets</option>
-									<option value='time'>Time</option>
-								</select><br/>
-								<Button style={ buttonStyle } text='Upload'  onClick={ (e) => this.onUploadClick(e) }/>
-							</div>
-						</form>
-
-						<div className='settings'>
-							<label className='setting-label'>Clear Data: <span className='setting-error'>(Warning: Existing data will be lost!)</span></label><br/>
-							<select value={ clearDataOption } onChange={ (e) => this.onClearSelectChange(e) }>
-								<option value=''></option>
-								<option value='customers'>Customers</option>
-								<option value='dashboard'>Dashboard</option>
-								<option value='settings'>Settings</option>
-								<option value='snippets'>Snippets</option>
-								<option value='time'>Time</option>
-							</select><br/>
-							<Button style={ buttonStyle } text='Clear'  onClick={ (e) => this.onClearClick(e) }/>
 						</div>
 					</div>
-
-					<div className="third">
-						<h5>Modules</h5>
-						<div className='settings'>
-							<table>
-								<tbody>
-									<tr>
-										<td><label className='setting-label'>Customers:</label></td>
-										<td>
-											<label className='switch'>
-												<input
-													name="isCustomersOn"
-													type="checkbox"
-													checked={ this.state.isCustomersOn }
-													onChange={ (e) => this.onModuleChange(e) }
-												/>
-												<span className='slider round'></span>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td><label className='setting-label'>Time:</label></td>
-										<td>
-											<label className='switch'>
-												<input
-													name="isTimeOn"
-													type="checkbox"
-													checked={ this.state.isTimeOn }
-													onChange={ (e) => this.onModuleChange(e) }
-												/>
-												<span className='slider round'></span>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td><label className='setting-label'>Snippets:</label></td>
-										<td>
-											<label className='switch'>
-												<input
-													name="isSnippetsOn"
-													type="checkbox"
-													checked={ this.state.isSnippetsOn }
-													onChange={ (e) => this.onModuleChange(e) }
-												/>
-												<span className='slider round'></span>
-											</label>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						<Button style={ buttonStyle } text='Save' onClick={ (e) => this.saveActiveModules(e) }/>
-					</div>
-
-				</div>
-
-				<Status ref={e => this.message = e} {...statusOptions} />
-			</div>
-					</div>
+					<Status ref={e => this.message = e} {...statusOptions} />
 				</div>
 			</div>
 		);

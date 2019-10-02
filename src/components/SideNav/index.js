@@ -9,6 +9,8 @@ import { openLink } from '../../helpers/link.js';
 import { BASE_URL } from '../NavBar/Settings/Entry/constants.js';
 import { EMAIL_URL } from './constants';
 
+import { getSetting } from '../NavBar/Settings/Entry/helper.js';
+
 class SideNav extends Component {
 	constructor(props) {
 		super(props);
@@ -19,6 +21,7 @@ class SideNav extends Component {
 			showEntryModal: false,
 			baseUrlId: '',
 			baseUrl: '',
+			shortcut: []
 		}
 
 		this.fetchAllDashOptions = this.fetchAllDashOptions.bind(this);
@@ -29,15 +32,12 @@ class SideNav extends Component {
 		this.fetchAllOptionsToMaintain = this.fetchAllOptionsToMaintain.bind(this);
 		this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
 		this.onKeyDown = this.onKeyDown.bind(this);
+		this.fetchKeyboardShortcut = this.fetchKeyboardShortcut.bind(this);
 	}
 
 	componentDidMount() {
 		this.fetchAllDashOptions();
-
-		if (this.redirectMessage) {
-			this.showStatusMessage(this.redirectMessage, 'success');
-		}
-
+		this.fetchKeyboardShortcut();
 		document.addEventListener("keydown", this.onKeyDown, false);
 	}
 
@@ -48,6 +48,11 @@ class SideNav extends Component {
 	onKeyDown(event) {
 		if (event.keyCode === 27) {
 			this.setState({ showEntryModal: false });
+		}
+
+		if (event.ctrlKey && event.keyCode == 68 && !event.target.type) {
+			this.setState({ showEntryModal: true });
+			this.fetchAllOptionsToMaintain();
 		}
 	}
 
@@ -101,6 +106,14 @@ class SideNav extends Component {
 					}
 				}
 			});
+	}
+
+	fetchKeyboardShortcut = () => {
+		getSetting('shortcuts', 'sideNav').then((shortcut) => {
+			this.setState({
+				shortcut: shortcut
+			});
+		});
 	}
 
 	onEditCloseButton = () => {

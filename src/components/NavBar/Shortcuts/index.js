@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import Entry from './Entry';
 
-const quickStyle = {
-	paddingTop: '12px',
-	float: 'right',
-};
-
-class Settings extends Component {
+class Shortcuts extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			showEntryModal: false,
-		}
+		};
 
-		this.onGearIconClick = this.onGearIconClick.bind(this);
-		this.onEditCloseButtonClick = this.onEditCloseButtonClick.bind(this);
+		this.onClick = this.onClick.bind(this);
+		this.onCloseButtonClick = this.onCloseButtonClick.bind(this);
 		this.onKeyDown = this.onKeyDown.bind(this);
 	}
 
@@ -37,20 +32,21 @@ class Settings extends Component {
 			}
 		}
 
-		if (event.ctrlKey && event.keyCode == 83 && !event.target.type) {
-			this.showSettings();
+		if (event.ctrlKey && event.keyCode == 75 && !event.target.type) {
+			this.showShortcuts();
 		}
 	}
 
-	onGearIconClick = () => {
+	onClick = (event) => {
+		event.preventDefault()
 		var showModal = this.state.showEntryModal;
 
 		if (! showModal) {
-			this.showSettings();
+			this.showShortcuts();
 		}
 	}
 
-	showSettings = () => {
+	showShortcuts = () => {
 		this.setState({ showEntryModal: true });
 		document.querySelector('.sidenav').style.zIndex = '-1';
 		if (document.querySelector('.addButton')) {
@@ -58,7 +54,7 @@ class Settings extends Component {
 		}
 	}
 
-	onEditCloseButtonClick = () => {
+	onCloseButtonClick = () => {
 		this.setState({ showEntryModal: false });
 		document.querySelector('.sidenav').style.zIndex = '1';
 
@@ -76,16 +72,16 @@ class Settings extends Component {
 			<div>
 				<div
 					className='button bar-item'
-					style={ quickStyle }
-					onClick={ e => this.onGearIconClick() }
+					style={{ paddingTop: '12px', float: 'right', }}
+					onClick={ (event) => {this.onClick(event) }}
 				>
-					<i className='fa fa-cogs'></i>
+					<i className='fa fa-keyboard'></i>
 				</div>
 
 				{ showEntryModal && 
 					<Entry
-						titleValue={ 'Settings' }
-						onClose={ e => this.onEditCloseButtonClick() }
+						titleValue={ 'Shortcuts' }
+						onClose={ e => this.onCloseButtonClick() }
 					/>
 				}
 			</div>
@@ -93,4 +89,4 @@ class Settings extends Component {
 	}
 }
 
-export default Settings;
+export default Shortcuts;

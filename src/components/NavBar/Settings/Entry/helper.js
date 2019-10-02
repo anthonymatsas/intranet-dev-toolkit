@@ -1,7 +1,8 @@
 import db from '../../../../helpers/db';
 
-export default function(settingName, dataElement) {
+const getSetting = (settingName, dataElement) => {
 	return new Promise(function (resolve, reject) {
+		var gotResults = false;
 		db.table("settings")
 			.toArray()
 			.then(settings => {
@@ -14,6 +15,19 @@ export default function(settingName, dataElement) {
 						}
 					}
 				}
+
+				if (! settings.lengh) {
+					resolve([]);
+				}
+			})
+			.catch(error => {
+				console.log(error);
+			})
+			.finally(() => {
 			});
 	});
+}
+
+export {
+	getSetting,
 };

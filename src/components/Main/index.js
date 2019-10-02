@@ -5,7 +5,7 @@ import Customers from '../Customers';
 import Time from '../Time';
 import Snippets from '../Snippets';
 
-import getSetting from '../NavBar/Settings/Entry/helper.js';
+import { getSetting } from '../NavBar/Settings/Entry/helper.js';
 import { MODULES } from '../NavBar/Settings/Entry/constants.js';
 
 import { routes } from '../../constants/routes';
@@ -15,17 +15,25 @@ class Main extends Component {
 		super(props);
 
 		this.state = {
-			modules: {}
+			modules: {},
+			shortcuts: {}
 		};
 
 		this.onKeyDown = this.onKeyDown.bind(this);
 		this.fetchActiveModules = this.fetchActiveModules.bind(this);
+		this.setupNavigationControl = this.setupNavigationControl.bind(this);
+		this.fetchShortcuts = this.fetchShortcuts.bind(this);
 	}
 
 	componentDidMount() {
 		document.addEventListener("keydown", this.onKeyDown, false);
 
 		this.fetchActiveModules();
+		this.fetchShortcuts();
+	}
+
+	componentWillUnmount(){
+		document.removeEventListener("keydown", this.onKeyDown, false);
 	}
 
 	fetchActiveModules() {
@@ -36,11 +44,14 @@ class Main extends Component {
 		});
 	}
 
-	componentWillUnmount(){
-		document.removeEventListener("keydown", this.onKeyDown, false);
+	fetchShortcuts = () => {
 	}
 
 	onKeyDown(event) {
+		this.setupNavigationControl(event);
+	}
+
+	setupNavigationControl = (event) => {
 		const { modules } = this.state;
 		const currentRoute = this.props.location.pathname;
 		const currentIndex = routes.indexOf(currentRoute);
@@ -78,21 +89,26 @@ class Main extends Component {
 		const { modules } = this.state;
 		const routes = [];
 
+		let routeKey = 1;
 		if (modules.customers) {
-			routes.push(<Route key={2} path='/customers' component={Customers} />);
+			routes.push(<Route key={ routeKey } path='/customers' component={Customers} />);
+			routeKey++;
 		}
 
-		routes.push(<Route key={4} path='/email' component={(event) => {
+		routes.push(<Route key={ routeKey } path='/email' component={(event) => {
 			window.open('https://gmail.com/', '_blank');
+			routeKey++;
 			return null;
 		}} />);
 
 		if (modules.time) {
-			routes.push(<Route key={5} path='/time' component={Time} />);
+			routes.push(<Route key={ routeKey } path='/time' component={Time} />);
+			routeKey++;
 		}
 
 		if (modules.snippets) {
-			routes.push(<Route key={8} path='/snippets' component={Snippets} />);
+			routes.push(<Route key={ routeKey } path='/snippets' component={Snippets} />);
+			routeKey++;
 		}
 
 		return routes;

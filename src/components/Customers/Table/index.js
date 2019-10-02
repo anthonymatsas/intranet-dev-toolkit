@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { openLink } from '../../../helpers/link.js';
 
-import getSetting from '../../NavBar/Settings/Entry/helper.js';
+import { getSetting } from '../../NavBar/Settings/Entry/helper.js';
 import {
 	CONNECTION_FILE_PATH,
 } from '../../NavBar/Settings/Entry/constants.js';

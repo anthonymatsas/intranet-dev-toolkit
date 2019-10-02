@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { openLink } from '../../../helpers/link.js';
-import getSetting from '../Settings/Entry/helper.js';
+import { getSetting } from '../Settings/Entry/helper.js';
 
 import {
 	QUICK_CONNECT,
@@ -64,7 +64,7 @@ class QuickConnect extends Component {
 						style={ quickStyle }
 						onClick={ (event) => {this.onClick(event, connection) }}
 					>
-						<i className='fa fa-plug'></i>
+						<i className='fa fa-bolt'></i>
 					</div>
 				}
 			</div>

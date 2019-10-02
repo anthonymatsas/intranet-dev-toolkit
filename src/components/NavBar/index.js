@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 import Settings from './Settings';
 import QuickConnect from './QuickConnect';
+import Shortcut from './Shortcuts';
 
 import { menus } from '../../constants/menus';
-import getSetting from '../NavBar/Settings/Entry/helper.js';
+import { getSetting } from '../NavBar/Settings/Entry/helper.js';
 import { MODULES } from '../NavBar/Settings/Entry/constants.js';
 
 class NavBar extends Component {
@@ -64,6 +65,7 @@ class NavBar extends Component {
 			<div className='nav bar'>
 				{ this.createNavBarList() }
 				<Settings />
+				<Shortcut />
 				<QuickConnect />
 			</div>
 		);

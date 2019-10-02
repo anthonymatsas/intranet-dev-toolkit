@@ -14,7 +14,8 @@ class Input extends Component {
 			onChange,
 			inputType = 'text',
 			onKeyDown,
-			defaultValue
+			defaultValue,
+			name
 		} = this.props;
 
 		var classes = classList + ' medium';
@@ -28,6 +29,7 @@ class Input extends Component {
 				onChange={onChange}
 				onKeyDown={onKeyDown}
 				defaultValue={defaultValue}
+				name={name}
 			/>
 		)
 	}

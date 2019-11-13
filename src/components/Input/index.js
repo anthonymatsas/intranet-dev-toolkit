@@ -15,13 +15,15 @@ class Input extends Component {
 			inputType = 'text',
 			onKeyDown,
 			defaultValue,
-			name
+			name,
+			id
 		} = this.props;
 
 		var classes = classList + ' medium';
 
 		return (
 			<input
+				id={id}
 				ref={(input) => { this.input = input; }}
 				className={classes}
 				type={inputType}

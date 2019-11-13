@@ -32,7 +32,7 @@ class Shortcuts extends Component {
 			}
 		}
 
-		if (event.ctrlKey && event.keyCode == 75 && !event.target.type) {
+		if (event.ctrlKey && event.keyCode === 75 && !event.target.type) {
 			this.showShortcuts();
 		}
 	}

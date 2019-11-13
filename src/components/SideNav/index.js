@@ -50,7 +50,7 @@ class SideNav extends Component {
 			this.setState({ showEntryModal: false });
 		}
 
-		if (event.ctrlKey && event.keyCode == 68 && !event.target.type) {
+		if (event.ctrlKey && event.keyCode === 68 && !event.target.type) {
 			this.setState({ showEntryModal: true });
 			this.fetchAllOptionsToMaintain();
 		}

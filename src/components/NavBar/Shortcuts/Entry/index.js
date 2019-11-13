@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Input from '../../../Input';
-import Button from '../../../Button';
 import Modal from './Modal';
 
 import Status from 'react-alert';

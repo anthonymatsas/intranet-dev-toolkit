@@ -37,7 +37,7 @@ class Settings extends Component {
 			}
 		}
 
-		if (event.ctrlKey && event.keyCode == 83 && !event.target.type) {
+		if (event.ctrlKey && event.keyCode === 83 && !event.target.type) {
 			this.showSettings();
 		}
 	}

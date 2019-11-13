@@ -2,7 +2,6 @@ import db from '../../../../helpers/db';
 
 const getSetting = (settingName, dataElement) => {
 	return new Promise(function (resolve, reject) {
-		var gotResults = false;
 		db.table("settings")
 			.toArray()
 			.then(settings => {

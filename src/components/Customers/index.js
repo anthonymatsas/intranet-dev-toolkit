@@ -36,6 +36,7 @@ class Customers extends Component {
 		this.onRemoveClick = this.onRemoveClick.bind(this);
 		this.onAddButtonClick = this.onAddButtonClick.bind(this);
 		this.onEditButtonClick = this.onEditButtonClick.bind(this);
+		this.focusSearchTerm = this.focusSearchTerm.bind(this);
 	}
 
 	componentDidMount() {
@@ -79,6 +80,12 @@ class Customers extends Component {
 		}
 	}
 
+	focusSearchTerm = () => {
+		var searchinput = document.querySelector('#searchInput');
+		searchinput.focus();
+		searchinput.select();
+	}
+
 	refreshData() {
 		this.setState({
 			customerId: null,
@@ -87,6 +94,8 @@ class Customers extends Component {
 		});
 
 		this.fetchAllCustomers();
+
+		this.focusSearchTerm();
 	}
 
 	onEntryCloseButtonClick = () => {
@@ -105,6 +114,8 @@ class Customers extends Component {
 		} else {
 			this.addNewCustomer(customerName, customerCredentials, customerWeb);
 		}
+
+		this.focusSearchTerm();
 	}
 
 	updateCustomer(customerId, customerName, customerCredentials, customerWeb) {
@@ -122,10 +133,23 @@ class Customers extends Component {
 			return;
 		}
 
+		var needCustomerRefresh = (this.state.searchTerm === customerName) ? this.state.searchTerm : null;
+
 		db.table("customers")
 			.update(id, customer)
 			.then(() =>  {
-				this.refreshData();
+				this.fetchCustomer(needCustomerRefresh);
+				this.setState({ showEntryModal: false });
+
+				if (needCustomerRefresh) {
+					this.setState({
+						customerId: null,
+						searchTerm: '',
+						searchKey: ''
+					});
+				}
+
+				this.showStatusMessage(this.state.searchTerm + ' updated successfully', 'success');
 			});
 	}
 

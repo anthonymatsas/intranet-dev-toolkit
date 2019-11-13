@@ -118,6 +118,7 @@ class Autocomplete extends Component {
 		return (
 			<Fragment>
 				<Input
+					id='searchInput'
 					focus={ true }
 					classList='search-input'
 					onChange={ onChange }

@@ -64,7 +64,7 @@ class Table extends Component {
 								<td>{task.time}</td>
 								<td>
 									{task.description.split("\n").map(text =>
-										<pre key={ Math.random() }>{text}</pre>
+										<div key={ Math.random() }>{text}</div>
 									)}
 								</td>
 							</tr>

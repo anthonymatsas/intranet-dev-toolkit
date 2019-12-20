@@ -160,21 +160,23 @@ class Time extends Component {
 		}
 	}
 
-	onSaveClick = (taskId, taskDate, taskCustomer, taskTime, taskComment) => {
+	onSaveClick = (taskId, taskDate, taskCustomer, taskTime, taskComment, actualTime) => {
 		if (parseInt(taskId, 10)) {
-			this.updateTime(taskId, taskDate, taskCustomer, taskTime, taskComment);
+			this.updateTime(taskId, taskDate, taskCustomer, taskTime, taskComment, actualTime);
 		} else {
 			this.addNewTime(taskDate, taskCustomer, taskTime, taskComment);
 		}
 	}
 
-	updateTime(taskId, taskDate, taskCustomer, taskTime, taskDescription) {
+	updateTime(taskId, taskDate, taskCustomer, taskTime, taskDescription, actualTime) {
 		const task = {
 			customer: taskCustomer,
 			time: taskTime,
 			description: taskDescription,
 			taskDate: taskDate,
 			modifiedDateTime: Date.now(),
+			completedDateTime: taskTime ? Date.now() : null,
+			actualTime: (actualTime && taskTime) ? actualTime : null,
 		};
 
 		let id = null;
@@ -202,6 +204,8 @@ class Time extends Component {
 			taskDate: taskDate,
 			billable: true,
 			createdDateTime: Date.now(),
+			completedDateTime: taskTime ? Date.now() : null,
+			actualTime: taskTime ? taskTime : null,
 			modifiedDateTime: Date.now(),
 		};
 

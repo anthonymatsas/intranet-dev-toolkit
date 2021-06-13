@@ -1,5 +1,7 @@
 # intranet (dev toolkit)
 
+** This repository has been cloned from a private version and archived. Purpose of this project was to learn reactJS and electroJS, so best practices my not have been fully followed. Also, the project is in an 'incomplete' state and is being completely re written from scratch.
+
 A macOS and windows application built with electronjs and reactjs. Motivation behind this project was to get my hands dirty with electronjs and reactjs. It was a very first and bare go at implementing those technologies. This application was used daily while working because it organized my connectinos (ssh config file), let me track my tasks and time spent on them and allowed for storing of 'snippets' that I found useful. This is one of the main reasons I did not get into full TDD because I was building it as I went along my day and just wanted it to work, so that it could help me be more productive as a developer.
 
 ### Features
@@ -16,3 +18,14 @@ A macOS and windows application built with electronjs and reactjs. Motivation be
  - ElectronJS
  - ReactJS
  - Dexie.js (IndexedDB)
+
+### Images
+  ![image](resources/connections.png)
+  ![image](resources/connection.png)
+  ![image](resources/time.png)
+  ![image](resources/timeEntry.png)
+  ![image](resources/snippets.png)
+  ![image](resources/shortcuts.png)
+  ![image](resources/help.png)
+  ![image](resources/linkMaintenance.png)
+  ![image](resources/systemSettings.png)
